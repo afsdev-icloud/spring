@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Mail send</title>
+</head>
+<body>
+    <span th:text="${message}">test</span>
+
+    <form action="/BootMail" method="POST">
+        宛先：<input name="to" type="text" /><br/>
+        件名：<input name="subject" type="text" /><br/>
+        本文：<input name="body" type="text" /><br/>
+        <input type="submit" />
+    </form>
+</body>
+</html>
