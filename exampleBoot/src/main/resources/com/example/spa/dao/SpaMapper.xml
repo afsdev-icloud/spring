@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.spa.dao.SpaMapper">
+
+    <insert id="insert" keyProperty="spaGroup,spaName">
+        INSERT INTO spaData (
+            spaGroup, spaName, stateCd, hotType, hotTemp, spaAddr, spaMemo
+        ) VALUES (
+            #{spaGroup}, #{spaName}, #{stateCd}, #{hotType}, #{hotTemp}, #{spaAddr}, #{spaMemo}
+        )
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM spaData
+        WHERE spaGroup = #{spaGroup} AND spaName = #{spaName}
+    </delete>
+
+    <select id="select" resultType="com.example.spa.entity.SpaDataDto">
+        SELECT spaGroup, spaName, stateCd, hotType, hotTemp, spaAddr, spaMemo
+        FROM spaData
+        WHERE spaGroup = #{spaGroup} AND spaName = #{spaName}
+    </select>
+
+    <select id="search" resultType="com.example.spa.entity.SpaDataDto">
+        SELECT spaGroup, spaName, hotType, hotTemp, spaMemo
+        FROM spaData
+        WHERE spaGroup = #{spaGroup}
+    </select>
+
+</mapper>

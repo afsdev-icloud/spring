@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>SpaInfo list</title>
+</head>
+<body>
+  <div class="container">
+
+    <div class="page-header">
+     <h1>温泉情報の一覧</h1>
+    </div>
+
+    <div class="row">
+
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th class="col-md-3">詳</th>
+            <th class="col-md-3">温泉地</th>
+            <th class="col-md-3">施設名</th>
+            <th class="col-md-3">泉質</th>
+            <th class="col-md-3">泉温</th>
+            <th class="col-md-3">メモ</th>
+          </tr>
+
+          <tr th:each="info : ${spaInfo}">
+            <td>
+              <a href="/"
+                th:href="@{/SpaInfo/__${info.spaGroup}__/__${info.spaName}__}">☆</a>
+            </td>
+            <td class="col-md-9" th:text="${info.spaGroup}">.</td>
+            <td class="col-md-9" th:text="${info.spaName}">.</td>
+            <td class="col-md-9" th:text="${info.hotType}">.</td>
+            <td class="col-md-9" th:text="${info.hotTemp}">.</td>
+            <td class="col-md-9" th:text="${info.spaMemo}">.</td>
+          </tr>
+        </table>
+
+    </div>
+    <a href="/SpaInfo">戻る</a>
+
+  </div>
+</body>
+</html>

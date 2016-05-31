@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>spaRegistForm</title>
+</head>
+<body>
+  <div class="container">
+
+    <div class="page-header">
+     <h1>温泉情報の登録</h1>
+    </div>
+    <p th:if="${validationError}" th:text="${validationError}">validation error</p>
+
+    <div class="col-md-12">
+
+        <form role="form" action="/SpaRegist/confirm" th:action="@{/SpaRegist/confirm}" th:object="${spaRegistForm}" method="post">
+          <!-- text -->
+          <div class="form-group">
+            <label class="control-label" for="inputText">温泉地 </label>
+            <input type="text" class="form-control" id="inputText" name="spaGroup" th:field="*{spaGroup}" />
+            <span th:if="${#fields.hasErrors('spaGroup')}" th:errors="*{spaGroup}" class="help-block">error!</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="inputText">施設名 </label>
+            <input type="text" class="form-control" id="inputText" name="spaName" th:field="*{spaName}" />
+            <span th:if="${#fields.hasErrors('spaName')}" th:errors="*{spaName}" class="help-block">error!</span>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="inputText">県コード</label>
+            <input type="text" class="form-control" id="inputText" name="stateCd" th:field="*{stateCd}" />
+            <span th:if="${#fields.hasErrors('stateCd')}" th:errors="*{stateCd}" class="help-block">error!</span>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="inputText"> 泉 質 </label>
+            <input type="text" class="form-control" id="inputText" name="hotType" th:field="*{hotType}" />
+            <span th:if="${#fields.hasErrors('hotType')}" th:errors="*{hotType}" class="help-block">error!</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="inputText"> 泉 温 </label>
+            <input type="text" class="form-control" id="inputText" name="hotTemp" th:field="*{hotTemp}" />
+            <span th:if="${#fields.hasErrors('hotTemp')}" th:errors="*{hotTemp}" class="help-block">error!</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="inputText"> 住 所 </label>
+            <input type="text" class="form-control" id="inputText" name="spaAddr" th:field="*{spaAddr}" />
+            <span th:if="${#fields.hasErrors('spaAddr')}" th:errors="*{spaAddr}" class="help-block">error!</span>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="inputText"> メ モ </label>
+            <input type="text" class="form-control" id="inputText" name="spaMemo" th:field="*{spaMemo}" />
+            <span th:if="${#fields.hasErrors('spaMemo')}" th:errors="*{spaMemo}" class="help-block">error!</span>
+          </div>
+
+          <br/>
+          <button type="submit" class="btn btn-default">登録</button>
+        </form>
+
+    </div>
+    <br/>
+    <a href="/SpaInfo">戻る</a>
+
+  </div>
+</body>
+</html>
