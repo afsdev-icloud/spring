@@ -29,7 +29,7 @@ public class BootMailController {
 
         SimpleMailMessage msg = new SimpleMailMessage();
 
-        msg.setFrom("toru.takayama@artifacture.jp");
+        msg.setFrom("xxxx@artifacture.jp");
         msg.setTo(to);
         msg.setSubject(subject);
         msg.setText(body);
