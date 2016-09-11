@@ -21,6 +21,26 @@ Spring Bootを使ってみよう （2016年5月）
 |name              |TEXT       |名前                   |
 
 
+## リソース
+```
+\src\main\java\com\test
+  public @Controller            BootMailController
+  public @Controller            HelloController
+  public @Controller            JdbcController
+  public @Controller            Param1Controller
+  public @Controller            Param2Controller
+  public @SpringBootApplication TryBootApplication
+
+\src\main\resources
+  application.properties
+
+\src\main\resources\templates
+  index.html
+  list.html
+  mail.html
+  param.html
+```
+
 
 ## 試し方
 
