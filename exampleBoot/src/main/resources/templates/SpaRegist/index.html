@@ -11,48 +11,65 @@
     <div class="page-header">
      <h1>温泉情報の登録</h1>
     </div>
-    <p th:if="${validationError}" th:text="${validationError}">validation error</p>
+    <p style="color:#ff0000;" th:if="${validationError}" th:text="${validationError}">validation error</p>
 
     <div class="col-md-12">
 
-        <form role="form" action="/SpaRegist/confirm" th:action="@{/SpaRegist/confirm}" th:object="${spaRegistForm}" method="post">
-          <!-- text -->
+        <form class="form-horizontal" role="form" action="/SpaRegist/confirm" th:action="@{/SpaRegist/confirm}" th:object="${spaRegistForm}" method="post">
           <div class="form-group">
-            <label class="control-label" for="inputText">温泉地 </label>
-            <input type="text" class="form-control" id="inputText" name="spaGroup" th:field="*{spaGroup}" />
-            <span th:if="${#fields.hasErrors('spaGroup')}" th:errors="*{spaGroup}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText">温泉地 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="spaGroup" th:field="*{spaGroup}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('spaGroup')}" th:errors="*{spaGroup}" class="help-block">error!</span>
+            </div>
           </div>
           <div class="form-group">
-            <label class="control-label" for="inputText">施設名 </label>
-            <input type="text" class="form-control" id="inputText" name="spaName" th:field="*{spaName}" />
-            <span th:if="${#fields.hasErrors('spaName')}" th:errors="*{spaName}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText">施設名 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="spaName" th:field="*{spaName}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('spaName')}" th:errors="*{spaName}" class="help-block">error!</span>
+            </div>
+          </div>
+
+          <!-- select -->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputText">県 名</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="Select" name="stateCd">
+                <option value=""> </option>
+                <option th:each="item : ${stateItems}" th:value="${item.key}" th:text="${item.value}" th:selected="${item.key} == *{stateCd}">pulldown</option>
+              </select>
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('stateCd')}" th:errors="*{stateCd}" class="help-block">error!</span>
+            </div>
           </div>
 
           <div class="form-group">
-            <label class="control-label" for="inputText">県コード</label>
-            <input type="text" class="form-control" id="inputText" name="stateCd" th:field="*{stateCd}" />
-            <span th:if="${#fields.hasErrors('stateCd')}" th:errors="*{stateCd}" class="help-block">error!</span>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label" for="inputText"> 泉 質 </label>
-            <input type="text" class="form-control" id="inputText" name="hotType" th:field="*{hotType}" />
-            <span th:if="${#fields.hasErrors('hotType')}" th:errors="*{hotType}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText"> 泉 質 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="hotType" th:field="*{hotType}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('hotType')}" th:errors="*{hotType}" class="help-block">error!</span>
+            </div>
           </div>
           <div class="form-group">
-            <label class="control-label" for="inputText"> 泉 温 </label>
-            <input type="text" class="form-control" id="inputText" name="hotTemp" th:field="*{hotTemp}" />
-            <span th:if="${#fields.hasErrors('hotTemp')}" th:errors="*{hotTemp}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText"> 泉 温 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="hotTemp" th:field="*{hotTemp}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('hotTemp')}" th:errors="*{hotTemp}" class="help-block">error!</span>
+            </div>
           </div>
           <div class="form-group">
-            <label class="control-label" for="inputText"> 住 所 </label>
-            <input type="text" class="form-control" id="inputText" name="spaAddr" th:field="*{spaAddr}" />
-            <span th:if="${#fields.hasErrors('spaAddr')}" th:errors="*{spaAddr}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText"> 住 所 </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="spaAddr" th:field="*{spaAddr}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('spaAddr')}" th:errors="*{spaAddr}" class="help-block">error!</span>
+            </div>
           </div>
           <div class="form-group">
-            <label class="control-label" for="inputText"> メ モ </label>
-            <input type="text" class="form-control" id="inputText" name="spaMemo" th:field="*{spaMemo}" />
-            <span th:if="${#fields.hasErrors('spaMemo')}" th:errors="*{spaMemo}" class="help-block">error!</span>
+            <label class="col-sm-2 control-label" for="inputText"> メ モ </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" name="spaMemo" th:field="*{spaMemo}" />
+              <span style="color:#ff0000;" th:if="${#fields.hasErrors('spaMemo')}" th:errors="*{spaMemo}" class="help-block">error!</span>
+            </div>
           </div>
 
           <br/>

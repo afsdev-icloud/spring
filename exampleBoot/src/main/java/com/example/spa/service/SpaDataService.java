@@ -12,10 +12,19 @@ public interface SpaDataService {
     /**
      * 温泉情報の一覧検索
      *
+     * @param stateCd 県コード
+     * @return 温泉情報
+     */
+	public List<SpaDataDto> searchByState(String stateCd);
+
+    /**
+     * 温泉情報の一覧検索
+     *
+     * @param stateCd 県コード
      * @param spaGroup 温泉地
      * @return 温泉情報
      */
-	public List<SpaDataDto> searchSpaData(String spaGroup);
+	public List<SpaDataDto> searchByStateGroup(String stateCd, String spaGroup);
 
 	/**
 	 * 温泉情報の検索
@@ -25,6 +34,15 @@ public interface SpaDataService {
      * @return 温泉情報
 	 */
 	public SpaDataDto selectSpaData(String spaGroup, String spaName);
+
+	/**
+	 * 温泉情報の確認
+	 *
+	 * @param spaGroup 温泉地
+	 * @param spaName  施設名
+     * @return 真偽
+	 */
+	public boolean isSpaData(String spaGroup, String spaName);
 
 	/**
 	 * 温泉情報の登録

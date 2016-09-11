@@ -27,7 +27,7 @@
           <tr th:each="info : ${spaInfo}">
             <td>
               <a href="/"
-                th:href="@{/SpaInfo/__${info.spaGroup}__/__${info.spaName}__}">☆</a>
+                th:href="@{/SpaInfo/__${key}__/__${info.spaGroup}__/__${info.spaName}__}">☆</a>
             </td>
             <td class="col-md-9" th:text="${info.spaGroup}">.</td>
             <td class="col-md-9" th:text="${info.spaName}">.</td>

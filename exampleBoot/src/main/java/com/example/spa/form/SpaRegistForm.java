@@ -3,7 +3,10 @@ package com.example.spa.form;
 import java.io.Serializable;
 
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotNull;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 温泉情報の入力
@@ -14,16 +17,15 @@ public class SpaRegistForm implements Serializable {
 	private static final long serialVersionUID = -1L;
 
 	// 温泉地
-	@NotNull
+	@NotEmpty
 	private String spaGroup;
 
 	// 施設名
-	@NotNull
+	@NotEmpty
 	private String spaName;
 
 	// 県コード
-	@NotNull
-	@Digits(integer = 2, fraction = 0)
+	@NotEmpty(message="{error.select.stateCd.NotEmpty.message}")
 	private String stateCd;
 
 	// 泉質
@@ -95,5 +97,10 @@ public class SpaRegistForm implements Serializable {
 	public void setSpaMemo(String spaMemo) {
 		this.spaMemo = spaMemo;
 	}
+
+
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
+    }
 
 }

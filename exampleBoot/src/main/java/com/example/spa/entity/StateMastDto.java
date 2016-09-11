@@ -1,25 +1,20 @@
-package com.example.spa.form;
+package com.example.spa.entity;
 
 import java.io.Serializable;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * 検索条件の入力
- *
+ * 県名 DTO
  */
-public class SpaInfoForm implements Serializable {
-
-	private static final long serialVersionUID = -1L;
+public class StateMastDto implements Serializable {
 
 	// 県コード
-	@NotEmpty(message="{error.select.stateCd.NotEmpty.message}")
 	private String stateCd;
 
-	// 温泉地
-	private String spaGroup;
+	// 県名
+	private String stateName;
 
 
 	public String getStateCd() {
@@ -30,14 +25,13 @@ public class SpaInfoForm implements Serializable {
 		this.stateCd = stateCd;
 	}
 
-	public String getSpaGroup() {
-		return spaGroup;
+	public String getStateName() {
+		return stateName;
 	}
 
-	public void setSpaGroup(String spaGroup) {
-		this.spaGroup = spaGroup;
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
 	}
-
 
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);

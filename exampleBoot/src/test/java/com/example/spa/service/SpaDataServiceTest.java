@@ -23,7 +23,6 @@ public class SpaDataServiceTest {
     @Autowired
     private SpaDataService spaDataService;
 
-
     @Test
     public void test0_Insert() {
 
@@ -32,7 +31,7 @@ public class SpaDataServiceTest {
 	    spaData.setSpaGroup("白骨温泉");
 	    spaData.setSpaName("泡の湯ホテル");
 	    spaData.setStateCd("20");
-	    spaData.setHotType("炭酸水素塩温泉");
+	    spaData.setHotType("炭酸水素塩泉");
 	    spaData.setHotTemp("39");
 	    spaData.setSpaAddr(" ... ");
 	    spaData.setSpaMemo("てすと");
@@ -57,16 +56,40 @@ public class SpaDataServiceTest {
 
 		SpaDataDto spaData = spaDataService.selectSpaData("白骨温泉", "泡の湯ホテル");
 
-        assertEquals(spaData.getHotType(), "炭酸水素塩温泉");
+        assertEquals(spaData.getHotType(), "炭酸水素塩泉");
         assertEquals(spaData.getHotTemp(), "39");
     }
 
     @Test
     public void test2_Search() {
 
-		List<SpaDataDto> spaData = spaDataService.searchSpaData("白骨温泉");
+		List<SpaDataDto> spaData = spaDataService.searchByState("20");
 
         assertTrue(spaData.size() > 0);
+    }
+
+    @Test
+    public void test3_Search() {
+
+		List<SpaDataDto> spaData = spaDataService.searchByStateGroup("20", "白骨温泉");
+
+        assertTrue(spaData.size() > 0);
+    }
+
+    @Test
+    public void test4_IsSpaData() {
+
+		boolean spaData = spaDataService.isSpaData("乳頭温泉", "藤七温泉");
+
+        assertFalse(spaData);
+    }
+
+    @Test
+    public void test5_IsSpaData() {
+
+		boolean spaData = spaDataService.isSpaData("乳頭温泉", "黒湯温泉");
+
+        assertTrue(spaData);
     }
 
 }

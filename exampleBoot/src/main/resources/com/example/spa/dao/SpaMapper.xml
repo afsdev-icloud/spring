@@ -18,15 +18,45 @@
     </delete>
 
     <select id="select" resultType="com.example.spa.entity.SpaDataDto">
-        SELECT spaGroup, spaName, stateCd, hotType, hotTemp, spaAddr, spaMemo
+        SELECT
+            spaGroup As "spaGroup",
+            spaName  As "spaName",
+            stateCd  As "stateCd",
+            hotType  As "hotType",
+            hotTemp  As "hotTemp",
+            spaAddr  As "spaAddr",
+            spaMemo  As "spaMemo"
         FROM spaData
         WHERE spaGroup = #{spaGroup} AND spaName = #{spaName}
     </select>
 
-    <select id="search" resultType="com.example.spa.entity.SpaDataDto">
-        SELECT spaGroup, spaName, hotType, hotTemp, spaMemo
+    <select id="countByKey" resultType="Integer">
+        SELECT
+            count(*)
         FROM spaData
-        WHERE spaGroup = #{spaGroup}
+        WHERE spaGroup = #{spaGroup} AND spaName = #{spaName}
+    </select>
+
+    <select id="searchByState" resultType="com.example.spa.entity.SpaDataDto">
+        SELECT
+            spaGroup As "spaGroup",
+            spaName  As "spaName",
+            hotType  As "hotType",
+            hotTemp  As "hotTemp",
+            spaMemo  As "spaMemo"
+        FROM spaData
+        WHERE stateCd = #{stateCd}
+    </select>
+
+    <select id="searchByStateGroup" resultType="com.example.spa.entity.SpaDataDto">
+        SELECT
+            spaGroup As "spaGroup",
+            spaName  As "spaName",
+            hotType  As "hotType",
+            hotTemp  As "hotTemp",
+            spaMemo  As "spaMemo"
+        FROM spaData
+        WHERE stateCd = #{stateCd} AND spaGroup = #{spaGroup}
     </select>
 
 </mapper>

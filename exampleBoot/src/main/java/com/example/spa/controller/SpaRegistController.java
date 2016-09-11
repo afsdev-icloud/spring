@@ -1,5 +1,9 @@
 package com.example.spa.controller;
 
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.spa.entity.SpaDataDto;
 import com.example.spa.form.SpaRegistForm;
 import com.example.spa.service.SpaDataService;
+import com.example.spa.service.StateMastService;
 
 /**
  * 温泉情報更新 Controller class
@@ -24,8 +29,13 @@ import com.example.spa.service.SpaDataService;
 @RequestMapping("/SpaRegist")
 public class SpaRegistController {
 
+    private static final Logger logger = LoggerFactory.getLogger(SpaRegistController.class);
+
     @Autowired
     private SpaDataService spaDataService;
+
+    @Autowired
+    private StateMastService stateMastService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -41,7 +51,12 @@ public class SpaRegistController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(SpaRegistForm form, Model model) {
-	    return "SpaRegist/index";
+        logger.info("* index - / ");
+
+        Map<String, String> stateItems = stateMastService.getStateItems();
+        model.addAttribute("stateItems", stateItems);
+
+        return "SpaRegist/index";
 	}
 
 	/**
@@ -54,13 +69,19 @@ public class SpaRegistController {
 	 */
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
 	public String confirm(@Validated @ModelAttribute SpaRegistForm form, BindingResult result, Model model) {
+        logger.info("* index - /confirm ");
+
 	    if (result.hasErrors()) {
 	        model.addAttribute("validationError", "入力内容が不正です。");
 	        return index(form, model);
 	    }
 
-	    SpaDataDto spaData = new SpaDataDto();
+	    if (spaDataService.isSpaData(form.getSpaGroup(), form.getSpaName())) {
+	        model.addAttribute("validationError", "既に登録されています。");
+	        return index(form, model);
+	    }
 
+	    SpaDataDto spaData = new SpaDataDto();
 	    BeanUtils.copyProperties(form, spaData);
 
 	    spaDataService.insertSpaData(spaData);

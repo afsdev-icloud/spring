@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.spa.dao.StateMastMapper">
+
+    <select id="stateAll" resultType="com.example.spa.entity.StateMastDto">
+        SELECT
+            stateCd as "stateCd",
+            stateName as "stateName"
+        FROM stateMast
+        order by "stateCd"
+    </select>
+
+</mapper>

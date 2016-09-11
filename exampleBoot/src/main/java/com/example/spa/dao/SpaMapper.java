@@ -3,6 +3,7 @@ package com.example.spa.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.spa.entity.SpaDataDto;
 
@@ -16,12 +17,18 @@ public interface SpaMapper {
     void insert(SpaDataDto spaData);
 
     // 削除
-    void delete(SpaDataDto spaData);
+    void delete(@Param("spaGroup") String spaGroup, @Param("spaName") String spaName);
 
     // 検索
-    SpaDataDto select(SpaDataDto spaData);
+    SpaDataDto select(@Param("spaGroup") String spaGroup, @Param("spaName") String spaName);
+
+    // 確認
+    Integer countByKey(@Param("spaGroup") String spaGroup, @Param("spaName") String spaName);
 
     // 一覧検索
-    List<SpaDataDto> search(String spaGroup);
+    List<SpaDataDto> searchByState(String stateCd);
+
+    // 一覧検索
+    List<SpaDataDto> searchByStateGroup(@Param("stateCd") String stateCd, @Param("spaGroup") String spaGroup);
 
 }
