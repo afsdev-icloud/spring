@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.example.spa.validation.plugin.TwoBytesChar;
+
 /**
  * 温泉情報の入力
  *
@@ -18,10 +20,12 @@ public class SpaRegistForm implements Serializable {
 
 	// 温泉地
 	@NotEmpty
+	@TwoBytesChar
 	private String spaGroup;
 
 	// 施設名
 	@NotEmpty
+	@TwoBytesChar
 	private String spaName;
 
 	// 県コード
