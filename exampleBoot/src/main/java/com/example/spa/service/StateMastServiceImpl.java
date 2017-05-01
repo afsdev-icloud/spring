@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.spa.dao.StateMastMapper;
-import com.example.spa.entity.StateMastDto;
+import com.example.spa.dao.StatemastMapper;
+import com.example.spa.entity.Statemast;
+import com.example.spa.entity.StatemastExample;
 
 @Service
 @Transactional(readOnly = true)
@@ -20,24 +21,27 @@ public class StateMastServiceImpl implements StateMastService {
     private static final Logger logger = LoggerFactory.getLogger(StateMastServiceImpl.class);
 
     @Autowired
-    private StateMastMapper stateMapper;
+    private StatemastMapper statemastMapper;
 
     /**
      * 県名リストを取得する
      */
-	public Map<String, String> getStateItems() {
+    public Map<String, String> getStateItems() {
 
         Map<String, String> items = new LinkedHashMap<String, String>();
 
-        List<StateMastDto> stateMast = stateMapper.stateAll();
+        StatemastExample example = new StatemastExample();
+        example.setOrderByClause("stateCd");
 
-        for (StateMastDto state : stateMast) {
-        	items.put(state.getStateCd(), state.getStateName());
+        List<Statemast> list = statemastMapper.selectByExample(example);
+
+        for (Statemast state : list) {
+            items.put(state.getStateCd(), state.getStateName());
         }
 
         logger.info("* getStateItems: " + items.toString());
 
-	    return items;
-	}
+           return items;
+    }
 
 }
